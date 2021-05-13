@@ -1,4 +1,3 @@
-
 # Tarea4-Arquitectura_Sistema
 Tecnología y atributos de calidad - Django
 
@@ -9,13 +8,22 @@ Tecnología y atributos de calidad - Django
 - Angela Acevedo -1151628
 
 # Requisitos:clipboard:
-- 	S
+- Python 3.6 o posterior
+- pip
+- virtualenv
+- Contenido del requirements.txt
+  - asgiref==3.3.4
+  - Django==3.2.2
+  - gunicorn==20.1.0
+  - pytz==2021.1
+  - sqlparse==0.4.1
+
 
 # Construido con :hammer:
-+ Nube Amazon, aws
-+ Python3
-+ Django
-+ SQLite3
++ Nube Amazon, aws :cloud:
++ Python3 :snake:
++ Django :unicorn:
++ SQLite3 :card_index_dividers:
 
 
 # Instrucciones:arrow_left:
@@ -30,7 +38,7 @@ Tecnología y atributos de calidad - Django
 + Crear una ip elástica y asociarla a la EC2 recién creada
 
 ### Conexión SSH (Método 1-Putty)
-+ Con el programa Pyttygen cargamos la clave y generamos la clave privada que se descargará en una extensión .ppk
++ Con el programa Puttygen cargamos la clave y generamos la clave privada que se descargará en una extensión .ppk
 + Con el programa Putty nos dirigimos a la parte de "Session" y en Host Name colocaremos la ip pública(elástica) de nuestra EC2
 + Seleccionamos el apartado "Conection", desplegamos el check-box de "SSH" y seleccionaremos "AUTH"
 + Cargamos la clave en el formato ppk que se convirtió anteriormente, damos clic en "Open" y clic en "si"
@@ -48,14 +56,60 @@ Tecnología y atributos de calidad - Django
 
 
 ### Instalación de paquetes y dependencias en la máquina virtual
-+ 
+Actualizar paquetes.
+- sudo apt-get update
+- sudo apt-get upgrade
+
+Version de Python.
+- sudo python --version
+- sudo python3 --version
+
+Version de Pip.
+- pip3 --version
+
+Instalar Pip.
+- sudo apt install python3-pip
+ 
+Instalar Entorno virtual.
+- sudo pip3 install virtualenv
+
+Crear entorno virtual.
+- virtualenv Entorno_Virtual
+
+Activar entorno virtual.
+- source Entorno_Virtual/bin/activate
+
+Instalamos git.
+- git --version
+- sudo apt install git
+- git clone https://github.com/JuanPabloOrtizJaimes/Academia.git
 
 
-## Proceso de descarga
-   **1. Descargar el repositorio en el formato .zip disponible.**
-   
-   **2. Descomprimir el archivo**
+Modificar archivos.
+- cd Academia/Academia
+- Ubicamos el archivo Settings.py
+- Lo abrimos con el editor de texto nano
+- Ejemplo: nano Settings.py
+- Cambiamos el valor de ALLOWED_HOSTS = [''] y colocamos entre las comillas simples la direccion ip de la maquina de aws
+- Ejemplo: ALLOWED_HOSTS = ['52.20.228.206']
 
 
 
+Volver a la carpeta del proyecto.
+ - cd ..
 
+Listamos para ver si esta el archivo de  requirements.txt e instalamos las librerias que posea.
+ - ls
+ - nano requirements.txt
+ - pip3 install -r requirements.txt 
+
+Crear un super usuario.
+ - python manage.py createsuperuser
+        
+En la carpeta del proyecto ejecutamos el servidor en el puerto 8000 que se establecio previamente.
+ - gunicorn --bind 0.0.0.0:8000 Academia.wsgi:application
+
+## Ejecutar Aplicación ✔️
+- Nos dirigimos al navegador de preferencia y colocaremos la ip publica de nuestra maquina virtual de aws seguido del puerto y /admin.
+- Ejemplo:52.20.228.206:8000/admin
+- Y para loguearnos ingresamos las credenciales que creamos al crear el superusuario.
