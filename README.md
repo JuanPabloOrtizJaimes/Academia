@@ -28,6 +28,8 @@ Tecnología y atributos de calidad - Django
 
 # Instrucciones:arrow_left:
 
+  Video guía: https://youtu.be/FGZ1omkxIUU
+
 ## Despliegue Nube aws:
 
 ### Creación de EC2
